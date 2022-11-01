@@ -9,18 +9,36 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
     class Product
     {
         private string name;
-        private int price;
+        private decimal price;
         private double weight;
-        public int Price { get { return price; } }
         public string Name { get { return name; } }
-        public double Weight { get { return weight; } }
+        public decimal Price {
+            get { return price; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("Price can not be lower than 0");
+
+                price = value;
+            }
+        }   
+        public double Weight { 
+            get { return weight; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("Weight can not be lower than 0");
+
+                weight = value;
+            }
+        }
         public Product()
         {
             name = "Null";
             price = 0;
             weight = 0;
         }
-        public Product(string name, int price, double weight)
+        public Product(string name, decimal price, double weight)
         {   
             this.name = name;
             this.price = price;

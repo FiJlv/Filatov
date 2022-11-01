@@ -1,15 +1,22 @@
 ﻿using Homework_1_Filatov_Vladyslav_Serhiyovych;
 // Вітаю. Все доступно.
 
-Product product = new Product("М'ясо", 150, 2);
-Console.WriteLine(product);
+Product meat = new Product("Veal", 150, 2);
+Product vegetables = new Product("Potatoes", 10, 4);
 
-Buy buy = new Buy(product, 3);
-Console.WriteLine(buy);
+Buy buy = new Buy(meat, vegetables);
 
+Console.WriteLine(Check.InfoBuy(buy));
+
+
+
+<<<<<<< HEAD
 Console.WriteLine();
 // Не логічно передавати і продукт і покупку, яка містить інформацію про продукт. 
 // Крім того покупка можу містити кілька продуктів.
 Check chek = new Check(product, buy);
+=======
+
+>>>>>>> c6b80bd (commit)
 
 

@@ -9,13 +9,12 @@ int n = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Enter m");
 int m = Convert.ToInt32(Console.ReadLine());
 
-int[,] matrix1 = new int[n, m];
-int[,] matrix2 = new int[n, n];
+int[,] matrix = new int[n, m];
 
 Console.WriteLine("Vertical snake");
-rectangularMatrices.VerticalSnake(n, m, matrix1);
+rectangularMatrices.VerticalSnake(n, m, matrix);
 Console.WriteLine("Diagonal snake");
-rectangularMatrices.DiagonalSnake(n, matrix2);
+rectangularMatrices.DiagonalSnake(n, matrix);
 Console.WriteLine("Spiral snake");
-rectangularMatrices.SpiralSnake(n, m, matrix1);
+rectangularMatrices.SpiralSnake(n, m, matrix);
 

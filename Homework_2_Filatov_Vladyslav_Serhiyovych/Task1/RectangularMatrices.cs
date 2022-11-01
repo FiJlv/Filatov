@@ -42,7 +42,6 @@ namespace Homework_2_Filatov_Vladyslav_Serhiyovych
 
         public void DiagonalSnake(int n, int[,] matrix)
         {
-
             int num = 1;
             for (int d = 1 - n; d <= n - 1; d++)
             {
