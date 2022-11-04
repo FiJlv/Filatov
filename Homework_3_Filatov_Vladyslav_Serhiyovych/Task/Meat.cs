@@ -23,6 +23,8 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
                 {
                     category = value;
                 }
+                else
+                    throw new ArgumentException("It is not a meat category");
             } 
         }
         public MeatType Type
@@ -34,10 +36,14 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
                 {
                     type = value;
                 }
+                else
+                    throw new ArgumentException("It is not a type of meat");
             }
         }
 
-        public Meat(string name, double price, double weight, MeatCategory category, MeatType type) : base(name, price, weight) 
+        public Meat(string name, double price, double weight, 
+            Currency currency, WeightUnits weightUnits, MeatCategory category, MeatType type)
+            : base(name, price, weight, currency, weightUnits) 
         {
             this.category = category;
             this.type = type;
@@ -65,9 +71,12 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
             }
         }
 
-        public override int GetHashCode()
+        public override int GetHashCode()   
         {
-            return base.GetHashCode();
+            int hash = base.GetHashCode();
+            hash = hash * 20 + Type.GetHashCode();
+            hash = hash * 20 + Category.GetHashCode();
+            return hash;
         }
 
         public override string ToString()

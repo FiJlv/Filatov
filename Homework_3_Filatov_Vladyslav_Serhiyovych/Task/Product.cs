@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Task;
 
 namespace Homework_1_Filatov_Vladyslav_Serhiyovych
 {
@@ -12,6 +13,8 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
         private string name;
         private double price;
         private double weight;
+        private Currency currency;
+        private WeightUnits weightUnits;
         public string Name
         {  
             get { return name; }
@@ -46,17 +49,47 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
                     weight = value;
             }
         }
+        public Currency Currency
+        {
+            get { return currency; }
+            set
+            {
+                if (Enum.IsDefined(typeof(Currency), value))
+                {
+                    currency = value;
+                }
+                else
+                    throw new ArgumentException("It is not a currency");
+            }
+        }
+        public WeightUnits WeightUnits
+        {
+            get { return weightUnits; }
+            set
+            {
+                if (Enum.IsDefined(typeof(WeightUnits), value))
+                {
+                    weightUnits = value;
+                }
+                else
+                    throw new ArgumentException("It is not a weight units");
+            }
+        }
         public Product()
         {
             name = "Null";
             price = 0;
             weight = 0;
+            currency = new Currency();
+            weightUnits = new WeightUnits();
         }
-        public Product(string name, double price, double weight)
+        public Product(string name, double price, double weight, Currency currency, WeightUnits weightUnits)
         {   
             this.name = name;
             this.price = price;
             this.weight = weight;
+            this.currency = currency;   
+            this.weightUnits = weightUnits;
         }
 
         public virtual void ChangePrice(double percentage)
@@ -71,14 +104,20 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
         {
             StringBuilder result = new StringBuilder();
             result.Append($"Назва: {name}");
-            result.Append($"\nЦiна: {price} грн");
-            result.Append($"\nВага: {weight} кг");
+            result.Append($"\nЦiна: {price} {currency}");
+            result.Append($"\nВага: {weight} {weightUnits}");
             return result.ToString();
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int hash = 15;
+            hash = hash * 20 + Name.GetHashCode();
+            hash = hash * 20 + Price.GetHashCode();
+            hash = hash * 20 + Weight.GetHashCode();
+            hash = hash * 20 + Currency.GetHashCode();
+            hash = hash * 20 + WeightUnits.GetHashCode();
+            return hash;
         }
 
         public override bool Equals(object? obj)
@@ -88,7 +127,11 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
             else
             {
                 Product product = (Product)obj;
-                return this.Name == product.Name && this.Price == product.Price && this.Weight == product.Weight;
+                return this.Name == product.Name && 
+                       this.Price == product.Price &&
+                       this.Weight == product.Weight &&
+                       this.Currency == product.Currency &&
+                       this.WeightUnits == product.WeightUnits;
             }
         }
     }

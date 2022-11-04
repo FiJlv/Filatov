@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task;
 
 namespace Homework_1_Filatov_Vladyslav_Serhiyovych
 {
@@ -21,7 +22,9 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
             }
         }
 
-        public DairyProducts(string name, double price, double weight, double expirationDate) : base(name, price, weight)
+        public DairyProducts(string name, double price, double weight,
+            Currency currency, WeightUnits weightUnits, double expirationDate) 
+            : base(name, price, weight, currency, weightUnits)
         {
             this.expirationDate = expirationDate;
         }
@@ -50,14 +53,16 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int hash = base.GetHashCode();;
+            hash = hash * 20 + ExpirationDate.GetHashCode();
+            return hash;
         }
 
         public override string ToString()
         {
             StringBuilder result = new StringBuilder();
             result.Append(base.ToString());
-            result.Append($"\nТермін придатності: {ExpirationDate} днiв");
+            result.Append($"\nТермiн придатностi: {ExpirationDate} днiв");
             return result.ToString();
         }
     }
