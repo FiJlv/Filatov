@@ -13,8 +13,9 @@ namespace Task2
             Random r = new Random();
             for (int i = 0; i < n; i++)
                 for (int j = 0; j < m; j++)
+                    // константу треба винести як параметр
                     matrix[i, j] = r.Next(10);
-
+// роздрук лишній.
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
@@ -44,7 +45,7 @@ namespace Task2
                     {
                         int xend = i, yend = j;
                         int count = 0;
-
+// лишній цикл
                         while (xend < n && yend < m && matrix[xend, yend] == matrix[i, j])
                         {
                             foundLines[xend, yend] = (i, j);
