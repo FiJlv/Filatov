@@ -77,19 +77,19 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
         }
         public Product()
         {
-            name = "Null";
-            price = 0;
-            weight = 0;
-            currency = new Currency();
-            weightUnits = new WeightUnits();
+            Name = "Null";
+            Price = 0;
+            Weight = 0;
+            Currency = new Currency();
+            WeightUnits = new WeightUnits();
         }
         public Product(string name, double price, double weight, Currency currency, WeightUnits weightUnits)
         {   
-            this.name = name;
-            this.price = price;
-            this.weight = weight;
-            this.currency = currency;   
-            this.weightUnits = weightUnits;
+            Name = name;
+            Price = price;
+            Weight = weight;
+            Currency = currency;   
+            WeightUnits = weightUnits;
         }
 
         public virtual void ChangePrice(double percentage)

@@ -26,7 +26,7 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
             Currency currency, WeightUnits weightUnits, double expirationDate) 
             : base(name, price, weight, currency, weightUnits)
         {
-            this.expirationDate = expirationDate;
+            ExpirationDate = expirationDate;
         }
 
         public override void ChangePrice(double percentage)

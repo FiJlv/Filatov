@@ -45,8 +45,8 @@ namespace Homework_1_Filatov_Vladyslav_Serhiyovych
             Currency currency, WeightUnits weightUnits, MeatCategory category, MeatType type)
             : base(name, price, weight, currency, weightUnits) 
         {
-            this.category = category;
-            this.type = type;
+            Category = category;
+            Type = type;
         }
 
         public override void ChangePrice(double percentage)
