@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 namespace Homework_2_Filatov_Vladyslav_Serhiyovych
 {
     class RectangularMatrices
-    {
+    {//непрозора передача параметрів
         public void VerticalSnake(int n, int m, int[,] matrix)
         {
             int num = 1;
-            bool downDirection = true;
+            bool downDirection = true;!
+            // Не оптимально
             for (int j = 0; j < m; j++)
             {
                 if (downDirection)
@@ -31,7 +32,7 @@ namespace Homework_2_Filatov_Vladyslav_Serhiyovych
                 }
                 downDirection = !downDirection;
             }
-
+// Роздрук має бути не в цьому методі і не в цьому класі.
             for (int i = 0; i < n; i++)
             {
                for(int j = 0; j < m; j++)
@@ -41,7 +42,7 @@ namespace Homework_2_Filatov_Vladyslav_Serhiyovych
         }
 
         public void DiagonalSnake(int n, int[,] matrix)
-        {
+        {// не завжди працюючий алгоритм.
             int num = 1;
             for (int d = 1 - n; d <= n - 1; d++)
             {
