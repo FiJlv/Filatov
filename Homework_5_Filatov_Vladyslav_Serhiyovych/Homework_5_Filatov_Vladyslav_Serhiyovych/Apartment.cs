@@ -12,37 +12,42 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
         public uint Number { get; set; }
         public string Street { get; set; }
         public string LastName { get; set; }
-        public uint InputMeterReading { get; set; }
-        public uint OutputMeterReading { get; set; }
-        public double AmountOfExpenses { get; set; }
         public DateTime FirstMonth { get; set; }
+        public uint FirstMonthReadings { get; set; }
         public DateTime SecondMonth { get; set; }
+        public uint SecondMonthReadings { get; set; }
         public DateTime ThirdMonth { get; set; }
+        public uint ThirdMonthReadings { get; set; }
+        public uint AmountOfExpenses { get; set; }
 
         public Apartment()
         {
             Number = 0;
             Street = "";
             LastName = "";
-            InputMeterReading = 0;
-            OutputMeterReading = 0;
-            AmountOfExpenses = 0;
             FirstMonth = DateTime.Now;
+            FirstMonthReadings = 0;
             SecondMonth = DateTime.Now;
+            SecondMonthReadings = 0;
             ThirdMonth = DateTime.Now;
+            ThirdMonthReadings = 0;
+            AmountOfExpenses = 0;
         }
 
-        public Apartment(uint number, string street, string lastName, uint inputMeterReading, uint outputMeterReading, DateTime firstMonth, DateTime secondMonth, DateTime thirdMonth)
+        public Apartment(uint number, string street, string lastName,
+            DateTime firstMonth, DateTime secondMonth, DateTime thirdMonth,
+            uint firstMonthReadings, uint secondMonthReadings, uint thirdMonthReadings)
         {
             Number = number;
             Street = street;
             LastName = lastName;
-            InputMeterReading = inputMeterReading;
-            OutputMeterReading = outputMeterReading;
-            AmountOfExpenses = outputMeterReading - inputMeterReading;
             FirstMonth = firstMonth;
+            FirstMonthReadings = firstMonthReadings;
             SecondMonth = secondMonth;
+            SecondMonthReadings = secondMonthReadings;
             ThirdMonth = thirdMonth;
+            ThirdMonthReadings = thirdMonthReadings;
+            AmountOfExpenses = ((uint)((thirdMonthReadings - firstMonthReadings)*Settings.KWPrice));
         }
 
         public static bool TryParse(string input, out Apartment result)
@@ -55,12 +60,13 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
                 result.Number = Convert.ToUInt32(elements[0]);
                 result.Street = elements[1];
                 result.LastName = elements[2];
-                result.InputMeterReading = Convert.ToUInt32(elements[3]);
-                result.OutputMeterReading = Convert.ToUInt32(elements[4]);
-                result.AmountOfExpenses = ((Convert.ToUInt32(elements[4])) - Convert.ToUInt32(elements[3]))*KW.KWPrice;
-                result.FirstMonth = Convert.ToDateTime(elements[5]);
-                result.SecondMonth = Convert.ToDateTime(elements[6]);
+                result.FirstMonth = Convert.ToDateTime(elements[3]);
+                result.FirstMonthReadings = Convert.ToUInt32(elements[4]);
+                result.SecondMonth = Convert.ToDateTime(elements[5]);
+                result.SecondMonthReadings = Convert.ToUInt32(elements[6]);
                 result.ThirdMonth = Convert.ToDateTime(elements[7]);
+                result.ThirdMonthReadings = Convert.ToUInt32(elements[8]);
+                result.AmountOfExpenses = (uint)(((Convert.ToUInt32(elements[8])) - Convert.ToUInt32(elements[4])) * Settings.KWPrice);
 
                 ifParsed = true;
             }
@@ -84,11 +90,12 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
         {
             StringBuilder str = new StringBuilder();
             str.Append($"Номер квартири: {Number}");
-            str.Append($"\nВулиця: {Street}");
             str.Append($"\nПрiзвище: {LastName}");
-            str.Append($"\nВхiдний показ - {InputMeterReading}, вихiдний показ - {OutputMeterReading}");
-            str.Append($"\nДати зняття показiв: {FirstMonth.ToShortDateString()}, {SecondMonth.ToShortDateString()}, {ThirdMonth.ToShortDateString()}");
-            str.Append($"\nСума витрат за квартал: {AmountOfExpenses}");
+            str.Append($"\nВхiдний показ - {FirstMonthReadings}, вихiдний показ - {ThirdMonthReadings}");
+            str.Append($"\nПерший мiсяць: {FirstMonth.ToShortDateString()} - {FirstMonthReadings}");
+            str.Append($"\nДругий мiсяць: {SecondMonth.ToShortDateString()} - {SecondMonthReadings}");
+            str.Append($"\nТретiй мiсяць: {ThirdMonth.ToShortDateString()} - {ThirdMonthReadings}");
+            str.Append($"\nКiлькicть витрат за квартал: {AmountOfExpenses}");
             str.Append($"\n");
             return str.ToString();
         }

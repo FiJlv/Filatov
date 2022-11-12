@@ -6,27 +6,25 @@ class Program
 
     static void Main(string[] args)
     {
-
-        //HW5 ще в процесi, не доробив
-
-
-
-
-
         Accounting accounting;
-        //using (StreamReader sr = new StreamReader("Text.txt"))
-        //{
-        //     accounting = new Accounting(FileHandler.FileReadToEnd(sr));
-        //     FileHandler.ConsoleWrite(accounting.ToString());
-        //     accounting.NoElectricityUsed();
-        //}
-
-        using (StreamWriter sw = new StreamWriter("Text.txt"))
+        using (StreamReader sr = new StreamReader(Settings.pathforRead))
         {
-            accounting = new Accounting(FileHandler.FileWriteToEnd(sw,2));
+            accounting = new Accounting(FileHandler.FileReadToEnd(sr));
+            FileHandler.ConsoleWrite(accounting.ToString());
+        }
+
+        accounting.BiggestDebtor();
+        accounting.NoElectricityUsed();
+
+        using (StreamWriter sw = new StreamWriter(Settings.pathforWrite))
+        {
+            accounting = new Accounting(FileHandler.FileWriter(sw, 4));
             FileHandler.ConsoleWrite(accounting.ToString());
             sw.WriteLine(accounting.ToString());
         }
+
+        Console.WriteLine();
+
 
     }
 }

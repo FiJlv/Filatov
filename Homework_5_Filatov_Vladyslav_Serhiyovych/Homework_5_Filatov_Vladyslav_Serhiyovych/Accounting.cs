@@ -39,16 +39,6 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
             }
         }
 
-        public List<uint> AmountOfExpensesForEveryApartment()
-        {
-            List<uint> amountOfExpensesForEveryApartment = new List<uint>();
-            foreach (Apartment apartment in listOfApartaments)
-            {
-                uint amountOfExpenses = (uint)((apartment.OutputMeterReading - apartment.InputMeterReading) * KW.KWPrice);
-                amountOfExpensesForEveryApartment.Add(amountOfExpenses);
-            }
-            return amountOfExpensesForEveryApartment;
-        }
 
         public void BiggestDebtor()
         {
@@ -58,14 +48,26 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
                 apartmentList.Add(olimpiad);
             }
 
-            Console.WriteLine($"Найбiльша заборгованiсть у {apartmentList.First().LastName}.");
+            Console.WriteLine($"Найбiльша заборгованiсть у {apartmentList.Last().LastName}.");
+        }
+
+        public List<uint> AmountOfExpensesForEveryApartment()
+        {
+            List<uint> amountOfExpensesForEveryApartment = new List<uint>();
+            foreach (Apartment apartment in listOfApartaments)
+            {
+                uint amountOfExpenses = (uint)((apartment.ThirdMonthReadings - apartment.FirstMonthReadings) * Settings.KWPrice);
+                amountOfExpensesForEveryApartment.Add(amountOfExpenses);
+            }
+
+            return amountOfExpensesForEveryApartment;
         }
 
         public void NoElectricityUsed()
         {
             foreach (Apartment apartament in listOfApartaments)
             {
-                if (apartament.InputMeterReading == apartament.OutputMeterReading)
+                if (apartament.FirstMonthReadings == apartament.ThirdMonthReadings)
                 {
                     Console.WriteLine($"Квартира в якiй не використовувалась електроенергiя {apartament.Number}");
                 }
@@ -86,36 +88,5 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
             }
             return str.ToString();
         }
-
-        //public void NumberOfDaysSinceLastMeterReading()
-        //{
-
-        //    Console.Write("Выберете год: ");
-
-        //    DateTime startDate = new DateTime(int.Parse(Console.ReadLine()), 1, 1);
-
-        //    Console.Write("Выберете квартал: ");
-
-        //    int quarter = Convert.ToInt32(Console.ReadLine());
-
-        //    int counter = 0;
-
-        //    var quartersInfo = Enumerable.Range(0, 12)
-        //        .Select(startDate.AddMonths).ToList()
-        //        .GroupBy(_ => counter++ / 3)
-        //        .Select(v => new
-        //        {
-        //            quarterDates = String.Join(", ", v.Select(s => s.ToShortDateString())),
-        //            quarterNumber = v.Key + 1,
-        //            countDaysInQuarter = v.Select(s => DateTime.DaysInMonth(s.Year, s.Month)).Sum()
-        //        });
-
-        //    Console.Write("Количество дней в квартале: ");
-
-        //    foreach (var row in quartersInfo.Where(w => w.quarterNumber == quarter).Select(s => s.countDaysInQuarter))
-        //    {
-        //        Console.WriteLine(row);
-        //    }
-        //}
     }
 }

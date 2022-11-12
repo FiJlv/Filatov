@@ -24,8 +24,7 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
             return result;
         }
 
-
-        public static List<Apartment> FileWriteToEnd(StreamWriter sw, int count)
+        public static List<Apartment> FileWriter(StreamWriter sw, int count)
         {
             List<Apartment> result = new List<Apartment>();
 
@@ -36,32 +35,31 @@ namespace Homework_5_Filatov_Vladyslav_Serhiyovych
                 Console.WriteLine("Введiть номер квартири ");
                 newApartament.Number = Convert.ToUInt32(Console.ReadLine());
 
-                Console.WriteLine("Введiть назву вулицi");
-                newApartament.Street = Console.ReadLine();
-
                 Console.WriteLine("Введiть прiзвище");
                 newApartament.LastName = Console.ReadLine();
-
-                Console.WriteLine("Введiть вхiдний показ");
-                newApartament.InputMeterReading = Convert.ToUInt32(Console.ReadLine());
-
-                Console.WriteLine("Введiть вихiдний показ");
-                newApartament.OutputMeterReading = Convert.ToUInt32(Console.ReadLine());
-
-                newApartament.AmountOfExpenses = ((newApartament.OutputMeterReading - newApartament.InputMeterReading) * 2);
-
+                           
                 Console.WriteLine("Введiть дату 1 мiсяця кварталу");
                 newApartament.FirstMonth = Convert.ToDateTime(Console.ReadLine());
+
+                Console.WriteLine("Введiть показ для 1 мiсяця ");
+                newApartament.FirstMonthReadings= Convert.ToUInt32(Console.ReadLine());
 
                 Console.WriteLine("Введiть дату 2 мiсяця кварталу");
                 newApartament.SecondMonth = Convert.ToDateTime(Console.ReadLine());
 
+                Console.WriteLine("Введiть показ для 2 мiсяця ");
+                newApartament.SecondMonthReadings = Convert.ToUInt32(Console.ReadLine());
+
                 Console.WriteLine("Введiть дату 3 мiсяця кварталу");
                 newApartament.ThirdMonth = Convert.ToDateTime(Console.ReadLine());
 
+                Console.WriteLine("Введiть показ для 3 мiсяця ");
+                newApartament.ThirdMonthReadings = Convert.ToUInt32(Console.ReadLine());
+
+                newApartament.AmountOfExpenses = (uint)((newApartament.ThirdMonthReadings - newApartament.FirstMonthReadings) * Settings.KWPrice);
+
                 result.Add(newApartament);
             }
-
             return result;
         }
 

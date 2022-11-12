@@ -1,0 +1,15 @@
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\bin\Debug\net6.0\Task3.exe
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\bin\Debug\net6.0\Task3.deps.json
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\bin\Debug\net6.0\Task3.runtimeconfig.json
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\bin\Debug\net6.0\Task3.dll
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\bin\Debug\net6.0\Task3.pdb
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.csproj.AssemblyReference.cache
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.GeneratedMSBuildEditorConfig.editorconfig
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.AssemblyInfoInputs.cache
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.AssemblyInfo.cs
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.csproj.CoreCompileInputs.cache
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.dll
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\refint\Task3.dll
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.pdb
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\Task3.genruntimeconfig.cache
+C:\.NET\Filatov\Homework_2_Filatov_Vladyslav_Serhiyovych\Task3\obj\Debug\net6.0\ref\Task3.dll
