@@ -12,7 +12,7 @@ namespace Homework_2_Filatov_Vladyslav_Serhiyovych
         public void VerticalSnake(int n, int m, int[,] matrix)
         {
             int num = 1;
-            bool downDirection = true;!
+            bool downDirection = true;
             // Не оптимально
             for (int j = 0; j < m; j++)
             {

@@ -8,7 +8,7 @@ namespace Task3
 {
     class Cube
     {
-        int[,,] cube;
+        private int[,,] cube;
         public void CreateCube(int x, int y, int z)
         {
             cube = new int[x, y, z];
@@ -25,6 +25,66 @@ namespace Task3
                     }
                 }
             }
+        }
+        public string CheckForThroughHoles()
+        {
+            for (int k = 0; k < cube.GetLength(2); k++)
+            {
+                for (int i = 0; i < cube.GetLength(0); i++)
+                {
+                    bool throughHole = true;
+
+                    for (int j = 0; j < cube.GetLength(1); j++)
+                    {
+                        if (cube[i, j, k] == 1)
+                        {
+                            throughHole = false;
+                            break;
+                        }
+                    }
+                    if (throughHole)
+                        return "There is a through hole";
+                }
+            }
+
+            for (int i = 0; i < cube.GetLength(0); i++)
+            {
+                for (int j = 0; j < cube.GetLength(1); j++)
+                {
+                    bool throughHole = true;
+
+                    for (int k = 0; k < cube.GetLength(2); k++)
+                    {
+                        if (cube[i, j, k] == 1)
+                        {
+                            throughHole = false;
+                            break;
+                        }
+                    }
+                    if (throughHole)
+                        return "There is a through hole";
+                }
+            }
+
+            for (int j = 0; j < cube.GetLength(1); j++)
+            {
+                for (int k = 0; k < cube.GetLength(2); k++)
+                {
+                    bool throughHole = true;
+
+                    for (int i = 0; i < cube.GetLength(0); i++)
+                    {
+                        if (cube[i, j, k] == 1)
+                        {
+                            throughHole = false;
+                            break;
+                        }
+                    }
+                    if (throughHole)
+                        return "There is a through hole";
+                }
+            }
+            return "There isn't a through hole";
         }
 
         public void DisplayCube()
