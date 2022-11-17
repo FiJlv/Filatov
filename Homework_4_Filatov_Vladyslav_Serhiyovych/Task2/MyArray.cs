@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Task2
 {
     class MyArray
-    {
+    {// Не знайшла 2 найдовших послідовностей.
         private int [] array;
         public int this[int index]
         {
@@ -34,7 +34,7 @@ namespace Task2
         }
 
         public MyArray(int[] array)
-        {
+        {//треба робити глибоку копію!!!!
             this.array = array;
         }
 
@@ -50,7 +50,7 @@ namespace Task2
         }
 
         public void Sort()
-        {
+        {// слід було скористатись готовим методом Array.Sort
             for (int i = 0; i < array.Length; i++)
             {
                 for (int j = i + 1; j < array.Length; j++)
@@ -69,7 +69,7 @@ namespace Task2
         }
 
         public void FrequencyTable()
-        {
+        {// тут краще скористатись словником.Метод не повертає результат, а роздруковує.Це не добре.
             int[,] arr = new int[array.Length, 2]; 
             int count; 
             int nMin = 0; 
