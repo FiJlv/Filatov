@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,6 @@ namespace Task2
             for (int i = 0; i < array.Length; i++)
             {
                 array[i] = random.Next(range);
-                Console.Write(array[i] + " ");
             }      
         }
 
@@ -101,7 +101,71 @@ namespace Task2
                     nMax = i;
                 }
             Console.WriteLine($"Longest subseqeunce: {arr[nMax, 0]}, in all {arr[nMax, 1]} times");
+        }
 
+        static List<List<int>> lists = new List<List<int>>();
+        public void TwoLongestSubsequences()
+        {
+            List<int> listOfPrimes = new List<int>();
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (IsPrime(array[i]))
+                {
+                    listOfPrimes.Add(array[i]);
+                }
+            }
+
+            int position = 0;
+
+            foreach (int element in listOfPrimes)
+            {
+                Recursion(listOfPrimes, position++, element, new List<int>() { element });
+            }
+
+            lists.Sort((List<int> l1, List<int> l2) =>
+            {
+                if (l1.Count > l2.Count)
+                    return -1;
+                else
+                {
+                    if (l1.Count < l2.Count)
+                        return 1;
+                    else
+                        return 0;
+                }
+            });
+
+            int index = 0;
+
+            foreach (List<int> list in lists)
+            {
+                foreach (int number in list)
+                    Console.Write(number + " ");
+
+                Console.WriteLine();
+
+                if (index++ == 1)
+                 break; 
+            }
+        }
+        static void Recursion(List<int> arr, int pos, int prevElement, List<int> sequence)
+        {
+            if (pos == arr.Count || sequence.Count > 0)
+            {
+                lists.Add(sequence);
+            }
+
+            for (int i = pos; i < arr.Count; i++)
+            {
+                if (prevElement < arr[i])
+                {
+                    List<int> newSequence = new List<int>();
+                    newSequence.AddRange(sequence);
+                    newSequence.Add(arr[i]);
+                    Recursion(arr, i + 1, arr[i], newSequence);
+                }
+            }
         }
         private int Nmax(int nMin, out int count)
         {
@@ -117,6 +181,21 @@ namespace Task2
                     break;
             }
             return num;
-        }     
+        }
+
+        static bool IsPrime(int number)
+        {
+            if (number <= 1) return false;
+            if (number == 2) return true;
+            if (number % 2 == 0) return false;
+
+            var boundary = (int)Math.Floor(Math.Sqrt(number));
+
+            for (int i = 3; i <= boundary; i += 2)
+                if (number % i == 0)
+                    return false;
+
+            return true;
+        }
     }
 }
