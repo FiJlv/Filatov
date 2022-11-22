@@ -2,7 +2,7 @@
 using System;
 using Task;
 using Task.Enums;
-
+// не побачила 6 завдання!!!!
 Product cup = new Product("Чашка", 300, 3, Currency.UAH, WeightUnits.kg);
 Product veal = new Meat("Телятина", 150, 2, Currency.UAH, WeightUnits.kg, MeatCategory.High, MeatType.Veal);
 Product cheese = new DairyProducts("Сир", 220, 1, Currency.UAH, WeightUnits.kg, 3);
