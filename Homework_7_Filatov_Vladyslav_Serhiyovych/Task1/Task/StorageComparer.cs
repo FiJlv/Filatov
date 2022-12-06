@@ -53,7 +53,7 @@ namespace Task
         }
 
         public List<Product> ProductsOnlyInTheFirst()
-        {
+        {// Чому не використовуємо методи множин
             List<Product> productsOnlyInTheFirstStorage = new List<Product>();
 
             foreach (var product in firstStorage.Products)
