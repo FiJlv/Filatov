@@ -42,12 +42,12 @@ namespace Task2
             int sum = 0;
             bool second = false;
             for (int i = length - 1; i >= 0; i--)
-            {
+            {// cardnumber[i] є char!!!!
                 int d = card_number[i] - '0';
 
                 if (second == true)
                     d = d * 2;
-
+//алгоритмічно не правильно!
                 sum += d / 10;
                 sum += d % 10;
 
