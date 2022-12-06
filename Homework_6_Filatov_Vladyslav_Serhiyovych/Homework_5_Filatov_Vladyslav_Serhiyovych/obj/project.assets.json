@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\.NET\\Filatov\\Homework_5_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych.csproj",
+      "projectUniqueName": "C:\\.NET\\Filatov\\Homework_6_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych.csproj",
       "projectName": "Homework_5_Filatov_Vladyslav_Serhiyovych",
-      "projectPath": "C:\\.NET\\Filatov\\Homework_5_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych.csproj",
+      "projectPath": "C:\\.NET\\Filatov\\Homework_6_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych.csproj",
       "packagesPath": "C:\\Users\\vladz\\.nuget\\packages\\",
-      "outputPath": "C:\\.NET\\Filatov\\Homework_5_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych\\obj\\",
+      "outputPath": "C:\\.NET\\Filatov\\Homework_6_Filatov_Vladyslav_Serhiyovych\\Homework_5_Filatov_Vladyslav_Serhiyovych\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
