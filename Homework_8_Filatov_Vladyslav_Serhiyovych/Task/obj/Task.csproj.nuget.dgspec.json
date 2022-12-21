@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vladz\\Desktop\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj": {}
+    "C:\\Work\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vladz\\Desktop\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj": {
+    "C:\\Work\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vladz\\Desktop\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj",
+        "projectUniqueName": "C:\\Work\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj",
         "projectName": "Task",
-        "projectPath": "C:\\Users\\vladz\\Desktop\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj",
+        "projectPath": "C:\\Work\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\Task.csproj",
         "packagesPath": "C:\\Users\\vladz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vladz\\Desktop\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\obj\\",
+        "outputPath": "C:\\Work\\Filatov\\Homework_8_Filatov_Vladyslav_Serhiyovych\\Task\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
