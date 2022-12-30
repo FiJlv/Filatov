@@ -8,8 +8,8 @@ namespace Task1
 {
     static class FileHandler
     {
-        private static readonly string SetOfNumbersPath = "..\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\SetOfNumbers.txt";
-        private static readonly string ResultPath = "..\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\Result.txt";
+        private static readonly string SetOfNumbersPath = "C:\\.NET\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\SetOfNumbers.txt";
+        private static readonly string ResultPath = "C:\\.NET\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\Result.txt";
 
         public static int[] Read()
         {

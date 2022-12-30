@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Work\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\Task1.csproj",
+      "projectUniqueName": "C:\\All\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\Task1.csproj",
       "projectName": "Task1",
-      "projectPath": "C:\\Work\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\Task1.csproj",
+      "projectPath": "C:\\All\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\Task1.csproj",
       "packagesPath": "C:\\Users\\vladz\\.nuget\\packages\\",
-      "outputPath": "C:\\Work\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\obj\\",
+      "outputPath": "C:\\All\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
