@@ -9,14 +9,21 @@ using System.Xml.Serialization;
 
 namespace Homework_12_Filatov_Vladyslav_Serhiyovych
 {
+    public delegate void CashRegisterIsOverloaded(string message);
     class CashRegister
-    {     
+    {
         private bool isOpen;
         private PriorityQueue<Person, Status> queue;
         private int y;
         public bool IsOpen { get { return isOpen; } private set { isOpen = value; } }
         public int Y{ get { return y; } private set { y = value; } }
-        public PriorityQueue<Person, Status> Queue { get { return queue; } }
+        public PriorityQueue<Person, Status> Queue {
+            get { return queue; }
+        }
+
+        public event CashRegisterIsOverloaded? Overloaded;
+        private const int maxCount = 10;
+
         public CashRegister(int y, bool isOpen)
         {
             Y = y;
@@ -24,24 +31,18 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
             queue = new PriorityQueue<Person, Status>();
         }
 
-        public void Close()
+        public void Close() => isOpen = false;
+        public void Enqueue(Person person) 
         {
-            isOpen = false;
-        }
-        public bool IsEmpty() => queue.Count == 0;
-        public void Enqueue(Person person) => queue.Enqueue(person, person.Priority());
+            if (queue.Count <= maxCount)
+                queue.Enqueue(person, person.Priority());
+            else
+                Overloaded?.Invoke("Cash register is overloaded");
+
+        } 
         public Person Dequeue() => queue.Dequeue();
 
-        public List<Person> GetList() 
-        {
-            List<Person> list = new List<Person>();
-            while (queue.Count > 0)
-                list.Add(queue.Dequeue());
-
-            return list;
-        }
-
-        public static (int, int) NearestCashRegister((int,int) coord, IEnumerable<int> positions)
+        public static (int, int) NearestCashRegister((int,int) coord, List<int> positions)
         {
             (int, int) nearestCashRegister = (0,0);
             double dist;    
@@ -59,6 +60,16 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
             }
 
             return nearestCashRegister!;
+        }
+
+        public List<Person> GetPersons()
+        {
+            List<Person> persons = new List<Person>();
+
+            for (int i = 0; i < queue.Count; i++)
+                persons.Add(queue.Dequeue());
+
+            return persons;
         }
     }
 }

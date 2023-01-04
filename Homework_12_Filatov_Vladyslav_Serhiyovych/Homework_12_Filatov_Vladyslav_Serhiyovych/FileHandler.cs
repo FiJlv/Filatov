@@ -21,10 +21,12 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
                 List<Person> persons = new List<Person>(countOfPersons);
                 string[] personList = FileReadToEnd(sr, countOfPersons);
 
-                for (int i = 0; i < countOfPersons; i++)                
-                    if (Person.ParsePerson(personList[i], out Person person))            
-                        persons.Add(person);
-
+                for (int i = 0; i < countOfPersons; i++)
+                {
+                    if (Person.ParsePerson(personList[i], out Person person))
+                        persons.Add(person);       
+                }
+                   
                 return persons;
             }
         }
@@ -35,18 +37,18 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
             {
                 using (StreamWriter sw = new StreamWriter(enteredPath, true))
                 {
-                    sw.WriteLine($"{person}Got in queue at the {cashRegister.Y + 1} cash register at {DateTime.Now}\n ");
+                    sw.WriteLine($"{person}Got in queue at the {cashRegister.Y} cash register at {DateTime.Now}\n ");
                 }
             }
         }
 
-        public static void Fill(Person person)
+        public static void Serviced(Person person, CashRegister cashRegister)
         {
             lock (_lock)
             {
                 using (StreamWriter sw = new StreamWriter(servicedPath, true))
                 {
-                    sw.WriteLine($"{person}Has been serviced at {DateTime.Now}\n ");
+                    sw.WriteLine($"{person}Has been serviced at {DateTime.Now} at {cashRegister.Y} cash register\n ");
                 }
             }
         }
@@ -55,8 +57,7 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
         {
             string[] result = new string[count];
             while (!sr.EndOfStream)
-            {
-                //Thread.Sleep(5000);  
+            { 
                 for (int i = 0; i < result.Length; i++)
                 {
                     result[i] = sr.ReadLine() ?? "";

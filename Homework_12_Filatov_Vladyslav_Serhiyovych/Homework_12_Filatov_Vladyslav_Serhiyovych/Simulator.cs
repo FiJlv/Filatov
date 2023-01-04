@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,104 +11,79 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
 {
     class Simulator
     {
-        private List<CashRegister> CashRegisters;
+        public List<CashRegister> CashRegisters;
         private List<Person> persons;
         public Simulator(int count)
         {
             CashRegisters = new List<CashRegister>();
             for (int i = 0; i < count; i++)
-                CashRegisters.Add(new CashRegister(i, true));
+                CashRegisters.Add(new CashRegister(i + 1, true));                
 
             persons = FileHandler.ReadPersons();
 
             foreach (Person person in persons)
-            {
-                EnqueuePerson(person);
-                Console.WriteLine(person);
-            }
-
-            Start();
+                AddToQueue(person);
         }
 
-        private void Start()
+        public void Run()
         {
-            Task[] tasks = new Task[CashRegisters.Count];
-
+            int count = CashRegisters.Where(cr => cr.IsOpen).Count();
+            Task[] tasks = new Task[count];
             for (int i = 0; i < tasks.Length; i++)
             {
-                var cashRegister = CashRegisters[i];
-                tasks[i] = Task.Factory.StartNew(() => Process(cashRegister));
+                CashRegister cashRegister = CashRegisters[i];
+                
+                    tasks[i] = Task.Factory.StartNew(() =>
+                    {
+                        while (!(cashRegister.Queue.Count == 0))
+                        {
+                            Person person = cashRegister.Dequeue();
+                            FileHandler.Serviced(person, cashRegister);
+                            Thread.Sleep(1000);
+                        }
+                    });       
             }
 
             Task.WaitAll(tasks);
+        }   
 
-            DistributionAfterClosing(tasks);
-        }
-
-        private void Process(CashRegister cashRegister)
+        private void AddToQueue(Person person)
         {
-            if (!cashRegister.IsOpen)
-                return;
+            List<int> positionList = new List<int>(CashRegisters.Count);
+            foreach (CashRegister cashRegister in CashRegisters.Where(cr => cr.IsOpen))
+            {
+                if (cashRegister.Queue.Count == CashRegisters.Min(x => x.Queue.Count))
+                {
+                    positionList.Add(cashRegister.Y);
+                }
+            }
 
-            Person person = cashRegister.Dequeue();
-
-            FileHandler.Fill(person);
-            Thread.Sleep(5000);
-        }     
-
-        private void EnqueuePerson(Person person)
-        {
-            int minLength = CashRegisters
-                .Where(x => x.IsOpen)
-                .Min(x => x.Queue.Count);
-
-            IEnumerable<int> positionList = CashRegisters
-                .Where(x => x.IsOpen && x.Queue.Count == minLength)
-                .Select(x => x.Y);
-
-            (int,int) nearest = CashRegister.NearestCashRegister(person.Coordinate, positionList);
+            (int, int) nearest = CashRegister.NearestCashRegister(person.Coordinate, positionList);
 
             foreach (var cashRegiser in CashRegisters)
+            {
                 if (cashRegiser.Y.Equals(nearest.Item2))
                 {
                     cashRegiser.Enqueue(person);
                     FileHandler.Add(person, cashRegiser);
-                } 
-        }
-
-        private void DistributionAfterClosing(Task[] tasks)
-        {
-            var usersFromClosedCashRegister = CloseTheCashRegister(CashRegisters[CashRegisters.Count - 1]);
-
-            foreach (var person in usersFromClosedCashRegister)
-                EnqueuePerson(person);
-
-            tasks = new Task[CashRegisters.Count];
-
-            for (int i = 0; i < tasks.Length; i++)
-            {
-                var cashRegister = CashRegisters[i];
-                tasks[i] = Task.Factory.StartNew(() => ProcessAll(cashRegister));
-            }
-            Task.WaitAll(tasks);
-        }
-        private void ProcessAll(CashRegister cashRegister)
-        {
-            if (!cashRegister.IsOpen)
-                return;
-
-            while (!cashRegister.IsEmpty())
-            {
-                Person p = cashRegister.Dequeue();
-                Thread.Sleep(5000);
+                    Thread.Sleep(1000);
+                }
             }
         }
-        private List<Person> CloseTheCashRegister(CashRegister cashRegister)
-        {
-            cashRegister.Close();
-            List<Person> list = cashRegister.GetList();
 
-            return list;
+        public void Close(int numberOfCashRegister)
+        {
+            foreach(CashRegister cashRegister in CashRegisters)
+            {
+                if (cashRegister.Y == numberOfCashRegister)
+                {
+                    cashRegister.Close();
+                    foreach (Person person in cashRegister.GetPersons())
+                    {
+                        AddToQueue(person);
+                    }
+                }              
+            }
         }
     }
 }

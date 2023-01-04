@@ -11,7 +11,7 @@ Product milk = new DairyProducts("Молоко", 39, 1, Currency.UAH, WeightUnit
 
 Storage storage = new Storage(cup, veal, milk, cheese);
 storage.Info();
-QuickSort.Start(storage.Products);
+QuickSort.Start(storage.Products, "First");
 
 
 

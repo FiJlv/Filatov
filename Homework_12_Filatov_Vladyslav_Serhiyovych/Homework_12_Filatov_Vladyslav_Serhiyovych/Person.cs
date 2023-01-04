@@ -23,9 +23,7 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
                     throw new ArgumentException("Age entered incorrectly");                
             }
         }
-
-        public string Name
-        {
+        public string Name {
             get { return name; }
             private set
             {
@@ -35,15 +33,33 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
                     throw new ArgumentException("Name must be filled");
             }
         }
-        public Status Status { get { return status; } private set { status = value; }}
-        public TimeSpan ElapsedTime { get { return elapsedTime; } private set { elapsedTime = value; } }
-        public (int, int) Coordinate { get { return coordinate; } private set { coordinate = value; } }
+        public Status Status { 
+            get { return status; } 
+            private set {
+                if (value == Status.Ordinary || value == Status.Disabled)
+                    status = value;
+                else
+                    throw new ArgumentException("No such status exists");
+            }
+        }
+        public TimeSpan ElapsedTime { 
+            get { return elapsedTime; }
+            private set { 
+                if(elapsedTime < new TimeSpan(01,00,00))
+                    elapsedTime = value;
+                else
+                    throw new ArgumentException("Servicing can not take more than an hour");
+            } }
+        public (int, int) Coordinate { 
+            get { return coordinate; } 
+            private set { coordinate = value; } 
+        }
 
         public Person(string name, int age, int status, TimeSpan elapsedTime, (int, int) coordinate)
         {
             Name = name;
             Age = age;
-            Status = status == 2 ? (Status)status : status == 2 ? (Status)status : Status.Ordinary ;
+            Status = (Status)status;
             ElapsedTime = elapsedTime;
             Coordinate = coordinate;
         }
@@ -88,10 +104,7 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
             return ifParsed;
         }
 
-        public Status Priority()
-        {
-            return status + (ElapsedTime < new TimeSpan(0, (int)ElapsedTime.TotalMinutes, 0) ? 0 : 1);
-        }
+        public Status Priority() => (Status)((int)Status * Age);
 
         public override string ToString()
         {

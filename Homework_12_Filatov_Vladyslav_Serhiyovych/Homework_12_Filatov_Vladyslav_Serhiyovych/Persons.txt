@@ -3,5 +3,6 @@ Emily 31 2 00:8 2 4
 Jacob 14 2 00:4 2 1
 Thomas 20 2 00:5 1 2 
 Amelia 30 2 00:7 1 1
-Olivia 21 2 00:4 1 8
+Olivia 21 1 00:4 1 8
 Ruby 22 2 00:7 1 7
+John 21 2 00:4 1 9
