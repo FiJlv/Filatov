@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,9 +10,15 @@ namespace Task1
 {
     static class SplitMerge
     {
-        public static void Start()
+        public static void Sort(StreamReader source, StreamWriter result, int size)
         {
-            FileHandler.FillResult(Sort(FileHandler.Read(), 0, FileHandler.Read().Length - 1));
+            for (int i = 1; !source.EndOfStream; i++) 
+            {
+                var nums = FileHandler.Read(size, source);
+                nums = Sort(nums, 0, nums.Length - 1);
+                FileHandler.Temp(nums, i); 
+            }
+            MergeTheChunks(result, size); 
         }
 
         private static int[] Sort(int[] array, int left, int right)
@@ -47,6 +55,81 @@ namespace Task1
                 mergedNums[merged++] = rightNums[right++];
 
             return mergedNums;
+        }
+
+        public static void MergeTheChunks(StreamWriter sw, int size)
+        {
+            string[] paths = Directory.GetFiles(".", "buffer" + "*.txt");
+
+            int chunks = paths.Length;
+            int bufferlen = size / chunks;
+
+            StreamReader[] readers = new StreamReader[chunks];
+            for (int i = 0; i < chunks; i++)
+                readers[i] = new StreamReader(paths[i]);
+
+            Queue<string>[] queues = new Queue<string>[chunks];
+            for (int i = 0; i < chunks; i++)
+                queues[i] = new Queue<string>(bufferlen);
+
+            for (int i = 0; i < chunks; i++)
+                LoadQueue(queues[i], readers[i], bufferlen);
+
+            bool done = false;
+            int lowest_index, j;
+            string lowest_value;
+            while (!done)
+            {
+
+                lowest_index = -1;
+                lowest_value = "";
+                for (j = 0; j < chunks; j++)
+                {
+                    if (queues[j] != null)
+                    {
+                        if (lowest_index < 0 ||
+                          String.CompareOrdinal(
+                            queues[j].Peek(), lowest_value) < 0)
+                        {
+                            lowest_index = j;
+                            lowest_value = queues[j].Peek();
+                        }
+                    }
+                }
+
+                if (lowest_index == -1) { done = true; break; }
+
+                sw.WriteLine(lowest_value);
+
+                queues[lowest_index].Dequeue();
+
+                if (queues[lowest_index].Count == 0)
+                {
+                    LoadQueue(queues[lowest_index],
+                      readers[lowest_index], bufferlen);
+                    if (queues[lowest_index].Count == 0)
+                    {
+                        queues[lowest_index] = null;
+                    }
+                }
+            }
+            sw.Close();
+
+            for (int i = 0; i < chunks; i++)
+            {
+                readers[i].Close();
+                File.Delete(paths[i]);
+            }
+        }
+
+        public static void LoadQueue(Queue<string> queue,
+          StreamReader file, int records)
+        {
+            for (int i = 0; i < records; i++)
+            {
+                if (file.Peek() < 0) break;
+                queue.Enqueue(file.ReadLine());
+            }
         }
     }
 }

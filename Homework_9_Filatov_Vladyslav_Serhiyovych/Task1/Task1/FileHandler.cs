@@ -8,31 +8,20 @@ namespace Task1
 {
     static class FileHandler
     {
-        private static readonly string SetOfNumbersPath = "C:\\.NET\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\SetOfNumbers.txt";
-        private static readonly string ResultPath = "C:\\.NET\\Filatov\\Homework_9_Filatov_Vladyslav_Serhiyovych\\Task1\\Task1\\Result.txt";
-
-        public static int[] Read()
+        public static void Temp(int[] nums, int number, string name = "temp")
         {
-            using (StreamReader sr = new StreamReader(SetOfNumbersPath))
-            {
-                int count = File.ReadAllLines(SetOfNumbersPath).Length;
-                int[] nums = new int[count];
-
-                while (!sr.EndOfStream)
-                    for (int i = 0; i < count; i++)
-                        nums[i] = Convert.ToInt32(sr.ReadLine() ?? "");
-
-                return nums;
-            }
+            using StreamWriter sw = new StreamWriter(name + number + ".txt");
+            foreach (int num in nums)
+                sw.WriteLine(num);
         }
 
-        public static void FillResult(int[] result)
+        public static int[] Read(int size, StreamReader sr)
         {
-            using (StreamWriter sw = new StreamWriter(ResultPath, true))
-            {
-                foreach (int item in result)
-                    sw.WriteLine(item);
-            }
+            int[] nums = new int[size];
+            for (int i = 0; i < size; i++)
+                nums[i] = Convert.ToInt32(sr.ReadLine() ?? "");
+
+            return nums;
         }
     }
 }
