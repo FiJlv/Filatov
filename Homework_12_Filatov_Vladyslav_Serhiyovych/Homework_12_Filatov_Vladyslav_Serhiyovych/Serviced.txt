@@ -1,56 +1,56 @@
-Name: Jacob
-Age: 14
-Status: Ordinary
-Time: 00:04:00
-Coordinate: (2, 1)
-Has been serviced at 04.01.2023 19:07:47 at 2 cash register
- 
 Name: Olivia
 Age: 21
 Status: Disabled
 Time: 00:04:00
 Coordinate: (1, 8)
-Has been serviced at 04.01.2023 19:07:47 at 1 cash register
+Has been serviced at 11.01.2023 17:55:02 at 1 cash register
  
 Name: Charlie
 Age: 15
 Status: Ordinary
 Time: 00:10:00
 Coordinate: (1, 3)
-Has been serviced at 04.01.2023 19:07:47 at 3 cash register
+Has been serviced at 11.01.2023 17:55:02 at 3 cash register
+ 
+Name: Jacob
+Age: 14
+Status: Ordinary
+Time: 00:04:00
+Coordinate: (2, 1)
+Has been serviced at 11.01.2023 17:55:02 at 2 cash register
  
 Name: Ruby
 Age: 22
 Status: Ordinary
 Time: 00:07:00
 Coordinate: (1, 7)
-Has been serviced at 04.01.2023 19:07:48 at 2 cash register
+Has been serviced at 11.01.2023 17:55:03 at 2 cash register
  
 Name: Thomas
 Age: 20
 Status: Ordinary
 Time: 00:05:00
 Coordinate: (1, 2)
-Has been serviced at 04.01.2023 19:07:48 at 3 cash register
+Has been serviced at 11.01.2023 17:55:03 at 3 cash register
  
 Name: Emily
 Age: 31
 Status: Ordinary
 Time: 00:08:00
 Coordinate: (2, 4)
-Has been serviced at 04.01.2023 19:07:48 at 1 cash register
+Has been serviced at 11.01.2023 17:55:03 at 1 cash register
  
 Name: John
 Age: 21
 Status: Ordinary
 Time: 00:04:00
 Coordinate: (1, 9)
-Has been serviced at 04.01.2023 19:07:49 at 3 cash register
+Has been serviced at 11.01.2023 17:55:04 at 3 cash register
  
 Name: Amelia
 Age: 30
 Status: Ordinary
 Time: 00:07:00
 Coordinate: (1, 1)
-Has been serviced at 04.01.2023 19:07:49 at 2 cash register
+Has been serviced at 11.01.2023 17:55:04 at 2 cash register
  

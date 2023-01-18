@@ -1,0 +1,124 @@
+CREATE DATABASE UkrainianCinemaNetwork;
+
+CREATE TABLE Hall(
+	HallId int NOT NULL UNIQUE,
+	HallName varchar(40),
+	PRIMARY KEY(HallId)
+);
+
+CREATE TABLE Movie(
+	MovieId int NOT NULL UNIQUE,
+	MovieName varchar(100),
+	Duration int, 
+	PRIMARY KEY(MovieId)
+);
+
+CREATE TABLE Buyer(
+	BuyerId int GENERATED ALWAYS AS IDENTITY,
+	FirstName varchar(40),
+	LastName varchar(40),
+	PRIMARY KEY(BuyerId)
+);
+
+CREATE TABLE MovieSession(
+	MovieSessionId int NOT NULL UNIQUE,
+	MovieId int,
+	HallId int,
+	SessionDate date,
+	FOREIGN KEY(MovieId) REFERENCES movie(MovieId),
+	FOREIGN KEY(HallId) REFERENCES Hall(HallId),
+	PRIMARY KEY(MovieSessionId)
+);
+
+CREATE TABLE Seat(
+	SeatId int NOT NULL UNIQUE,
+	HallId int,
+	Row int,
+	Number int,
+	IsAvailable bool,
+	FOREIGN KEY(HallId) REFERENCES Hall(HallId),
+	PRIMARY KEY(SeatId)
+);
+
+CREATE TABLE Ticket(
+	TicketId int NOT NULL UNIQUE,
+	BuyerId int,
+	HallId int,
+	MovieSessionId int, 
+	SeatId int,	
+	DateOfPurchase date,
+	Price int,
+	FOREIGN KEY(HallId) REFERENCES Hall(HallId),
+	FOREIGN KEY(BuyerId) REFERENCES buyer(BuyerId),
+	FOREIGN KEY(MovieSessionId) REFERENCES MovieSession(MovieSessionId),
+	FOREIGN KEY(SeatId) REFERENCES Seat(SeatId)
+);
+
+INSERT INTO Hall (HallId, HallName) VALUES
+('1', 'Blue'),
+('2', 'Red');
+
+INSERT INTO Movie (MovieId, MovieName, Duration) VALUES
+('1', 'Matrix', 85),
+('2', '1+1', 90);
+
+INSERT INTO buyer (FirstName, LastName) VALUES
+('John', 'Smith'),
+('Robbie', 'Johnson'),
+('Thomas', 'Foster');	
+
+INSERT INTO MovieSession (MovieSessionId, MovieId, HallId, SessionDate) VALUES
+('1', '1', '1', '2023-01-17 8:00'),
+('2', '2', '2', '2023-02-25 8:00');
+
+INSERT INTO Seat (SeatId, HallId, Row, Number, IsAvailable) VALUES
+('1', '1', '1', '1', true),
+('2', '1', '1', '2', true),
+('3', '1', '1', '3', true),
+('4', '2', '1', '4', true),
+('5', '2', '1', '5', true),
+('6', '2', '1', '6', true);
+
+INSERT INTO Ticket (TicketId, BuyerId, MovieSessionId, SeatId, DateOfPurchase, Price) VALUES
+('1', '1', '1', '1', '2023-01-14 8:00', 160),
+('2', '2', '2', '2', '2023-01-13 8:00', 180);
+
+SELECT MovieSession.SessionDate, Movie.MovieName 
+FROM MovieSession
+INNER JOIN Movie ON MovieSession.MovieId = Movie.MovieId
+WHERE EXTRACT(WEEK FROM SessionDate) > 1;
+
+SELECT Seat.IsAvailable, Ticket.MovieSessionId
+FROM Seat
+INNER JOIN Ticket ON Seat.SeatId = Ticket.SeatId
+WHERE IsAvailable is true;
+
+SELECT Number FROM seat WHERE IsAvailable is true;
+
+SELECT (MovieId, count(Price))
+FROM ticket
+JOIN MovieSession ms on ms.MovieSessionId = ticket.MovieSessionId
+GROUP BY MovieId
+ORDER BY count(Price) DESC;
+
+SELECT Buyer.FirstName, Buyer.LastName
+FROM Ticket
+JOIN Buyer ON Buyer.BuyerId = Ticket.BuyerId
+JOIN MovieSession ON MovieSession.MovieSessionId = Ticket.MovieSessionId
+WHERE EXTRACT(week FROM SessionDate) > 2
+GROUP BY FirstName, LastName
+ORDER BY count(price) DESC LIMIT 3;
+
+SELECT Ticket.HallId FROM Ticket
+JOIN Seat s on s.SeatId = Ticket.SeatId
+JOIN MovieSession ms on Ticket.MovieSessionId = ms.MovieSessionId
+WHERE EXTRACT(week FROM SessionDate) > 1
+GROUP BY Ticket.HallId;
+
+SELECT DISTINCT t1.moviesessionid
+FROM ticket t1
+JOIN ticket t2 on t1.moviesessionid = t2.moviesessionid
+JOIN moviesession ms on ms.moviesessionid = t1.moviesessionid
+where t1.buyerid != t2.buyerid
+AND t1.moviesessionid = t2.moviesessionid
+ORDER BY t1.moviesessionid ASC;

@@ -12,14 +12,13 @@ namespace Homework_12_Filatov_Vladyslav_Serhiyovych
     class Simulator
     {
         public List<CashRegister> CashRegisters;
-        private List<Person> persons;
         public Simulator(int count)
         {
             CashRegisters = new List<CashRegister>();
             for (int i = 0; i < count; i++)
-                CashRegisters.Add(new CashRegister(i + 1, true));                
+                CashRegisters.Add(new CashRegister(i + 1, true));
 
-            persons = FileHandler.ReadPersons();
+            List<Person> persons = FileHandler.ReadPersons();
 
             foreach (Person person in persons)
                 AddToQueue(person);
