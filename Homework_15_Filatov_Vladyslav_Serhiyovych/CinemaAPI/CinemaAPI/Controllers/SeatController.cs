@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.Data;
+using CinemaAPI.Models.ModelsForRequests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Task.Models;
@@ -54,7 +55,7 @@ namespace CinemaAPI.Controllers
         //}
 
         [HttpPost]
-        public async Task<IActionResult> AddSeat(Seat addSeatRequest)
+        public async Task<IActionResult> AddSeat(AddSeatRequest addSeatRequest)
         {
             var seat = new Seat()
             {

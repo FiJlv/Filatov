@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.Data;
+using CinemaAPI.Models.ModelsForRequests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Task.Models;
@@ -38,7 +39,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddBuyer(Buyer addBuyerRequest)
+        public async Task<IActionResult> AddBuyer(AddBuyerRequest addBuyerRequest)
         {
             var buyer = new Buyer()
             {

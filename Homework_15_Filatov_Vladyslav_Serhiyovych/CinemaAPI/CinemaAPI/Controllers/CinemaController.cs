@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using Task.Models;
+using CinemaAPI.Models.ModelsForRequests;
 
 namespace CinemaAPI.Controllers
 {
@@ -38,7 +39,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCinema(Cinema addCinemaRequest)
+        public async Task<IActionResult> AddCinema(AddCinemaRequest addCinemaRequest)
         {
             var cinema = new Cinema()
             {

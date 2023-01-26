@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.Data;
+using CinemaAPI.Models.ModelsForRequests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Task.Models;
@@ -36,7 +37,7 @@ namespace CinemaAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTicket(Ticket addTicketRequest)
+        public async Task<IActionResult> AddTicket(AddTicketRequest addTicketRequest)
         {
             var ticket = new Ticket()
             {

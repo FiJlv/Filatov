@@ -1,4 +1,5 @@
 ﻿using CinemaAPI.Data;
+using CinemaAPI.Models.ModelsForRequests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Task.Models;
@@ -48,7 +49,7 @@ namespace CinemaAPI.Controllers
         //} 
 
         [HttpPost]
-        public async Task<IActionResult> AddMovieSession(MovieSession addMovieSessionRequest)
+        public async Task<IActionResult> AddMovieSession(AddMovieSessionRequest addMovieSessionRequest)
         {
             var movieSession = new MovieSession()
             {
