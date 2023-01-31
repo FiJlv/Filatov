@@ -37,15 +37,16 @@ namespace CinemaAPI.Controllers
             return Ok(movie);
         }
 
-        //[HttpGet]
-        //public IActionResult AllTheMoneyEarnedByEachMovie()
-        //{
-        //    var allTheMoneyEarnedByEachMovie = from t in context.Tickets
-        //                                       join ms in context.MovieSessions on t.MovieSessionId equals ms.Id
-        //                                       orderby t.Price descending
-        //                                       group t by ms.MovieId;
-        //    return Ok(allTheMoneyEarnedByEachMovie);
-        //}
+        [HttpGet("all-the-money-earned-by-each-movie")]
+        public IActionResult AllTheMoneyEarnedByEachMovie()
+        {
+            var allTheMoneyEarnedByEachMovie = from t in context.Tickets
+                                               join ms in context.MovieSessions on t.MovieSessionId equals ms.Id
+                                               orderby t.Price descending
+                                               group t by ms.MovieId;
+
+            return Ok(allTheMoneyEarnedByEachMovie);
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddMovie(AddMovieRequest addMovieRequest)

@@ -36,23 +36,23 @@ namespace CinemaAPI.Controllers
             return Ok(seat);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetNotBookedSeats()
-        //{
-        //    return Ok(await context.Seats
-        //        .Where(s => s.IsAvailable == true)
-        //        .Select(s => new { Num = s.Number }).ToListAsync());
-        //}
+        [HttpGet("get-not-booked-seats")]
+        public async Task<IActionResult> GetNotBookedSeats()
+        {
+            return Ok(await context.Seats
+                .Where(s => s.IsAvailable == true)
+                .Select(s => new { Num = s.Number }).ToListAsync());
+        }
 
-        //[HttpGet]
-        //public IActionResult SeatsForSpecificShow()
-        //{
-        //    var seatsForShow = from s in context.Seats
-        //                       join t in context.Tickets on s.Id equals t.SeatId
-        //                       where s.IsAvailable == true
-        //                       select new { Num = s.Number };
-        //    return Ok(seatsForShow);
-        //}
+        [HttpGet("seats-for-specific-show")]
+        public IActionResult SeatsForSpecificShow()
+        {
+            var seatsForShow = from s in context.Seats
+                               join t in context.Tickets on s.Id equals t.SeatId
+                               where s.IsAvailable == true
+                               select new { Num = s.Number };
+            return Ok(seatsForShow);
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddSeat(AddSeatRequest addSeatRequest)

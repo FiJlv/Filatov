@@ -37,16 +37,16 @@ namespace CinemaAPI.Controllers
             return Ok(movieSession);
         }
 
-        //[HttpGet]
-        //public IActionResult MovieSessionsForTheCurrentWeek()
-        //{
-        //    var movieSessionsForTheCurrentWeek = from ms in context.MovieSessions
-        //                                         join m in context.Movies on ms.Id equals m.Id
-        //                                         where ms.SessionDate = DateTime.Now.AddDays(7)
-        //                                         select new { Name = m.MovieName, Date = ms.SessionDate };
+        [HttpGet("movie-sessions-for-the-current-week")]
+        public IActionResult MovieSessionsForTheCurrentWeek()
+        {
+            var movieSessionsForTheCurrentWeek = from ms in context.MovieSessions
+                                                 join m in context.Movies on ms.Id equals m.Id
+                                                  where ms.SessionDate == DateTime.Now.AddDays(7)
+                                                 select new { Name = m.MovieName, Date = ms.SessionDate };
 
-        //    return Ok(movieSessionsForTheCurrentWeek);
-        //} 
+            return Ok(movieSessionsForTheCurrentWeek);
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddMovieSession(AddMovieSessionRequest addMovieSessionRequest)

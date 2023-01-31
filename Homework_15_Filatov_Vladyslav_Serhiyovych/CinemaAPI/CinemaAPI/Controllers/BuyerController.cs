@@ -24,6 +24,18 @@ namespace CinemaAPI.Controllers
 
         }
 
+        [HttpGet("top-three-buyers-who-spent-most-money")]
+        public async Task<IActionResult> TopThreeBuyersWhoSpentMostMoney()
+        {
+            var topThreeBuyersWhoSpentMostMoney = from b in context.Buyers
+                                                  join ms in context.MovieSessions on b.Id equals ms.BuyerId
+                                                  join t in context.Tickets on b.Id equals t.BuyerId
+                                                  where ms.SessionDate == ms.SessionDate.AddDays(7) 
+                                                  group b.LastName by t.Price;
+
+            return Ok(topThreeBuyersWhoSpentMostMoney);
+        }
+
         [HttpGet]
         [Route("{id:guid}")]
         public async Task<IActionResult> GetBuyer([FromRoute] Guid id)
