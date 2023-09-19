@@ -32,7 +32,7 @@
     static async Task<bool> SaveFileAsync(string path)
     {
         var result = await Task.Run(() => SaveFile(path));
-        return result;
+        return result;  
     }
 
     static bool SaveFile(string path)
